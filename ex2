@@ -7,19 +7,83 @@ import datetime
 import csv
 import numpy as np
 import collections
+from bigtree import Node,print_tree
 
 #import_fonts
-font=ImageFont.truetype('C:\\Users\\Achak\\Desktop\\graphiccs\\IRANSans_Black.ttf',85,encoding='unic')
+fontt=ImageFont.truetype('C:\\Users\\Achak\\Desktop\\graphiccs\\IRANSans_Black.ttf',85,encoding='unic')
 font1=ImageFont.truetype('C:\\Users\\Achak\\Desktop\\graphiccs\\IRANSans_Black.ttf',40,encoding='unic')
 
 #calculate time
-def date_calculate():
-    gregorian_date=str(date.today()).split("-",2)
-    jalalian_date=str(JalaliDate(datetime.date(int(gregorian_date[0]),int(gregorian_date[1]),int(gregorian_date[2])))).split('-',2)
-    Final_Date=jalalian_date[0]+"/"+jalalian_date[1]+"/"+jalalian_date[2]
-    return Final_Date
-today_date=date_calculate()
+gregorian_date=str(date.today()).split("-",2)
+jalalian_date=str(JalaliDate(datetime.date(int(gregorian_date[0]),int(gregorian_date[1]),int(gregorian_date[2])))).split('-',2)
+today_date=jalalian_date[0]+"/"+jalalian_date[1]+"/"+jalalian_date[2]
 
+#making the Data structure and reading data and sorting it and putting it inside data structure
+prices=np.array([])
+with open('C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\test prices\\prices.csv', mode ='r')as file:
+    csvFile=csv.reader(file)
+    for line in csvFile:
+        prices = np.append(prices,[line])
+Images=Node("/")
+Image1=Node("I1",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\1.jpg",parent=Images,priceL=prices[0:12],fp=np.array([70,172]))
+Image2=Node("I2",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\2.jpg",parent=Images,priceL=prices[12:24],fp=np.array([50,100]))
+Image3=Node("I3",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\3.jpg",parent=Images,priceL=prices[24:37],fp=np.array([50,100]))
+Image4=Node("I4",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\4.jpg",parent=Images,priceL=prices[37:47],fp=np.array([50,100]))
+Image5=Node("I5",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\5.jpg",parent=Images,priceL=prices[47:57],fp=np.array([50,100]))
+Image6=Node("I6",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\6.jpg",parent=Images,priceL=prices[57:66],fp=np.array([50,100]))
+Image7=Node("I7",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\7.jpg",parent=Images,priceL=prices[66:74],fp=np.array([50,100]))
+Image8=Node("I8",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\8.jpg",parent=Images,priceL=prices[74:81],fp=np.array([50,100]))
+Image9=Node("I9",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\9.jpg",parent=Images,priceL=prices[81:87],fp=np.array([50,100]))
+print_tree(Images,attr_list=["path","priceL"])
+"""
+def Write_On_First_Image():
+    A_Heading_Text="قیمت آهن آلات"
+    A_Heading=get_display(arabic_reshaper.reshape(A_Heading_Text)).encode().decode('utf-8')
+    image0=Image.open("C:\\Users\\Achak\\Desktop\\graphiccs\\ahan alat\\export\\V2\\Ahan_Alat_v2-0.jpg")
+    draw=ImageDraw.Draw(image0)
+    draw.text((20,900),today_date,(100,100,100),font=fontt)
+    draw.text((480,820),A_Heading,(255,5,5),font=fontt)
+    image0.show()
+"""
+########################################  /Here is Construction\  #########################################
+def Write_Prices():
+    print(Image1.path)
+    img=Image.open(f"{Image1.path}")
+    draw=ImageDraw.Draw(img)
+    # img.show()
+    print(font1)
+    draw.text((Image1.fp[0],Image1.fp[1]),str(Image1.priceL[0]),(0,0,0),font=font1)
+    img.show()
+# i need to seperate the final drawing and the part of program that chooses what to draw now___________________good night for now and have a good day my darling;
+#########################################################################################################
+def main():
+    # Write_On_First_Image()
+    Write_Prices()
+    pass
+main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ###################################################################################################################
+"""
 #initializing arrays
 prices=np.array([])
 poses=np.array([])
@@ -33,6 +97,9 @@ with open('C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\test prices\\poses.cs
     for line in csvFile:
         poses=np.append(poses,[line])
     poses = poses.reshape(160,2)
+"""
+# ###################################################################################################################
+"""
 
 def Write_prices(image, price, position_x,position_y):
     print(position_x,position_y)
@@ -51,22 +118,13 @@ def Write_On_Images():
         opened_image.show()
     return 0
 
-
+"""
+"""
 def main():
     # Write_On_Images()
     Write_On_First_Image()
-    
-def Write_On_First_Image():
-    A_Heading_Text="قیمت آهن آلات"
-    A_Heading=get_display(arabic_reshaper.reshape(A_Heading_Text)).encode().decode('utf-8')
-    image0=Image.open("C:\\Users\\Achak\\Desktop\\graphiccs\\ahan alat\\export\\V2\\Ahan_Alat_v2-0.jpg")
-    draw=ImageDraw.Draw(image0)
-    draw.text((20,900),today_date,(100,100,100),font=font)
-    draw.text((480,820),A_Heading,(255,5,5),font=font)
-    image0.show()
-    return True
+
 
 #     image0.save("C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\0.png")
 main()
-
-
+"""
