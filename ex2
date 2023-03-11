@@ -8,62 +8,6 @@ import csv
 import numpy as np
 import collections
 
-
-
-
-
-
-
-
-###################################################################
-# Node class
-class Node:
-	# Function to initialize the node object
-	def __init__(self, data):
-		self.data = data # Assign data
-		self.next = None # Initialize next as null
-# Linked List class
-class LinkedList:
-	# Function to initialize the Linked List object
-	def __init__(self):
-		self.head = None
-# ###############################################################3
-
-
-# Image Node Class
-class Image_Node:
-    def __init__(self,image):
-        self.next=None
-        self.data_list=None
-        self.data=Image
-#Price Node Class
-class Price_Node:
-     def __init__(self,Price):
-        self.next=None
-        self.Price=Price
-# Images Linked List Class
-class Image_linked_list:
-     def __init__(self):
-        self.head=None
-# Prices Linked List Class
-class Prices_Linked_list:
-     def __init__(self):
-        self.head=None
-
-
-
-
-
-#hell owwww
-
-
-
-
-
-
-
-
-
 #import_fonts
 font=ImageFont.truetype('C:\\Users\\Achak\\Desktop\\graphiccs\\IRANSans_Black.ttf',85,encoding='unic')
 font1=ImageFont.truetype('C:\\Users\\Achak\\Desktop\\graphiccs\\IRANSans_Black.ttf',40,encoding='unic')
