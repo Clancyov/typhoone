@@ -1,3 +1,14 @@
+# i useed these librarys to do my job
+"""
+    # the arabic reshaper is for ordering persian words in rtl format ,etc
+    # the bidi.a;gorithm is for display and draw persian words
+    # pil is the heaart of this project /its for drawing 
+    # we need datatime to get gregorian datetime from the system
+    # persiantools is for converting date from gregorian to jalali
+    # the csv library is for reading csv fiels
+    # numpy is used to working with arrays
+    # bigtree is for making a tree to store informations 
+    """
 import arabic_reshaper
 from bidi.algorithm import get_display
 from PIL import Image, ImageFont, ImageDraw
@@ -9,21 +20,25 @@ import numpy as np
 from bigtree import Node,print_tree
 
 #import_fonts
+# iransans
+    # for first page
 fontt=ImageFont.truetype('C:\\Users\\Achak\\Desktop\\graphiccs\\IRANSans_Black.ttf',85,encoding='unic')
+    # prices in other pages
 font1=ImageFont.truetype('C:\\Users\\Achak\\Desktop\\graphiccs\\IRANSans_Black.ttf',40,encoding='unic')
 
-#calculate time
+#getting gregorian date and time from system then converting to jalali
 gregorian_date=str(date.today()).split("-",2)
 jalalian_date=str(JalaliDate(datetime.date(int(gregorian_date[0]),int(gregorian_date[1]),int(gregorian_date[2])))).split('-',2)
 today_date=jalalian_date[0]+"/"+jalalian_date[1]+"/"+jalalian_date[2]
 
 #making the Data structure and reading data and sorting it and putting it inside data structure
+    # reading and sorting csv files datas in an array
 prices=np.array([])
 with open('C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\test prices\\prices.csv', mode ='r')as file:
     csvFile=csv.reader(file)
     for line in csvFile:
         prices = np.append(prices,[line])
-        
+    # the tree's nodes
 Images=Node("/")
 Image1=Node("I1",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\1.jpg",parent=Images,priceL=prices[0:12],poses=np.array([70,172]))
 Image2=Node("I2",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\2.jpg",parent=Images,priceL=prices[12:24],poses=np.array([70,172]))
@@ -35,6 +50,7 @@ Image7=Node("I7",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample li
 Image8=Node("I8",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\8.jpg",parent=Images,priceL=prices[73:80],poses=np.array([70,172]))
 Image9=Node("I9",path="C:\\Users\\Achak\\Desktop\\graphiccs\\typhoone\\sample lists\\Ahan_Alat\\9.jpg",parent=Images,priceL=prices[80:86],poses=np.array([70,172]))
 
+# for writing needed things on first page
 def Write_On_First_Image():
     A_Heading_Text="قیمت آهن آلات"
     A_Heading=get_display(arabic_reshaper.reshape(A_Heading_Text)).encode().decode('utf-8')
@@ -44,10 +60,12 @@ def Write_On_First_Image():
     draw.text((480,820),A_Heading,(255,5,5),font=fontt)
     image0.show()
 
+# for writing each price on its place
 def Write_Price(Current_Image,Price,pose):    
     draw=ImageDraw.Draw(Current_Image)           
     draw.text((pose[0],pose[1]),str(Price),(0,0,0),font=font1)
 
+# for iteration in the tree and decide what to draw and where to draw
 def Iterate_And_Draw():
     for image in range (1,10):
         t=(globals()["Image"+str(image)])
@@ -62,10 +80,10 @@ def Iterate_And_Draw():
             t.poses[1]+=68
         Current_Image.show()
 
+# for driving the program
 def main():
     Write_On_First_Image()
     Iterate_And_Draw()
 
+# calling the driver
 main()
-
-i
